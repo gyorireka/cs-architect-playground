@@ -1,3 +1,6 @@
+First step:
+Add your own azure bus namespace connection url to dapr/components/x.yml file.
+
 # Analysis Service
 Start by:
 
