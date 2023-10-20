@@ -11,7 +11,6 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
-dapr/components
 **/*.jar
 **/set-vars.sh
 **/set-vars.ps1
