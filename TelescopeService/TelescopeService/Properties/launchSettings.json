@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "TelescopeService": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}

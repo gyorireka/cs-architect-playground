@@ -1,0 +1,16 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: blobstorage
+spec:
+  type: bindings.azure.blobstorage
+  version: v1
+  metadata:
+  - name: accountName
+    value: gyrstor
+  - name: accountKey
+    value: HvgA4repdGbYzq1jzx/wVPY79naz1QoxzRDiIN14qCzHr22RFwUTIZ1JjykoFYMu8RzlZtYlpSXR+AStp2Tdiw==
+  - name: containerName
+    value: images
+  - name: decodeBase64
+    value: true
