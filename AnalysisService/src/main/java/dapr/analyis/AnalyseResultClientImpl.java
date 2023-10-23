@@ -2,13 +2,17 @@ package dapr.analyis;
 
 import dapr.model.AnalysisResult;
 import io.dapr.client.DaprClient;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.UUID;
 
-public class DaprAnalyseResultClient implements AnalyseResultClient {
+import static dapr.Constants.*;
+
+public class AnalyseResultClientImpl implements AnalyseResultClient {
 	private final DaprClient daprClient;
 
-	public DaprAnalyseResultClient(final DaprClient daprClient) {
+	@Autowired
+	public AnalyseResultClientImpl(final DaprClient daprClient) {
 	   this.daprClient = daprClient;
 	}
 	
@@ -16,7 +20,7 @@ public class DaprAnalyseResultClient implements AnalyseResultClient {
 	public void analyseResultSend() {
 
 		AnalysisResult analysisResult = new AnalysisResult(UUID.randomUUID(), 3);
-		daprClient.publishEvent("pubsub",  "analysis", analysisResult).block();
+		daprClient.publishEvent(PUBSUB, ANALYSIS_RESULT_TOPIC, analysisResult).block();
 	}
 
 }
