@@ -1,5 +1,6 @@
 ﻿using System.Net.WebSockets;
 using System.Text;
+using TelescopeService.Models;
 
 namespace TelescopeService.Generator
 {
@@ -9,8 +10,24 @@ namespace TelescopeService.Generator
         public const string InputTextTemplate = "s";
         public const string StableDiffusionHost = "http://localhost:7860/file=";
 
+        public async static Task<GeneratedImage> Generate(string color)
+        {
+            string response = await Generator.GenerateImage("green");
+            string downloadUrlFromGenerator = Generator.GetDownloadURL(response);
+
+            var lastIndexOfSlash = downloadUrlFromGenerator.LastIndexOf("/");
+            var imageName = downloadUrlFromGenerator.Substring(lastIndexOfSlash + 1, downloadUrlFromGenerator.Length - lastIndexOfSlash - 1);
+
+            using (var client = new HttpClient())
+            {
+                byte[] dataBytes = await client.GetByteArrayAsync(downloadUrlFromGenerator);
+
+                return new GeneratedImage(imageName, dataBytes);
+            }
+        }
+
         //Requests image generation from StableDiffusion webUI via socket
-        public async static Task<string> Generate(string color)
+        private async static Task<string> GenerateImage(string color)
         {
             var ws = new ClientWebSocket();
             Console.WriteLine("Connecting to server...");

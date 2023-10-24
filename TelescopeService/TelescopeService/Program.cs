@@ -1,28 +1,15 @@
 ﻿using Dapr.Client;
-using TelescopeService.Generator;
+using TelescopeService.Service;
 
-const string blobStoreName = "blobstorage";
-const string create = "create";
+var builder = WebApplication.CreateBuilder(args);
 
-var daprClient = new DaprClientBuilder().Build();
+var daprHttpPort = Environment.GetEnvironmentVariable("DAPR_HTTP_PORT") ?? "3601";
+var daprGrpcPort = Environment.GetEnvironmentVariable("DAPR_GRPC_PORT") ?? "60001";
 
-string response = Generator.Generate("green").Result;
-string downloadUrlFromGenerator = Generator.GetDownloadURL(response);
+builder.Services.AddDaprClient(builder => builder
+    .UseHttpEndpoint($"http://localhost:{daprHttpPort}")
+    .UseGrpcEndpoint($"http://localhost:{daprGrpcPort}"));
 
-var lastIndexOfSlash = downloadUrlFromGenerator.LastIndexOf("/");
-var imageName = downloadUrlFromGenerator.Substring(lastIndexOfSlash + 1, downloadUrlFromGenerator.Length - lastIndexOfSlash - 1);
-
-Console.WriteLine(downloadUrlFromGenerator);
-
-IReadOnlyDictionary<string, string> metaData = new Dictionary<string, string>()
-{
-    { "blobName", $"{imageName}" },
-};
-
-using (var client = new HttpClient())
-{
-    byte[] dataBytes = client.GetByteArrayAsync(downloadUrlFromGenerator).Result;
-    string encodedFileAsBase64 = Convert.ToBase64String(dataBytes);
-
-    await daprClient.InvokeBindingAsync(blobStoreName, create, encodedFileAsBase64, metaData);
-}
+builder.Services.AddSingleton<IImageHandlerService>(
+    new ImageHandlerService(DaprClient.CreateInvokeHttpClient(
+        "vehicleregistrationservice", $"http://localhost:{daprHttpPort}")));

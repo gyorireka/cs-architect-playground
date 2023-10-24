@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj": {}
+    "C:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj": {}
   },
   "projects": {
-    "c:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj": {
+    "C:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj",
+        "projectUniqueName": "C:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj",
         "projectName": "TelescopeService",
-        "projectPath": "c:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj",
+        "projectPath": "C:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj",
         "packagesPath": "C:\\Users\\Csupakabra\\.nuget\\packages\\",
-        "outputPath": "c:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\obj\\",
+        "outputPath": "C:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Csupakabra\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Dapr.AspNetCore": {
+              "target": "Package",
+              "version": "[1.11.0, )"
+            },
             "Dapr.Client": {
               "target": "Package",
               "version": "[1.12.0, )"
@@ -61,6 +65,9 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
