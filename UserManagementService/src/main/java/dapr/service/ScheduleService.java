@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+import static dapr.Constants.PUBSUB;
+import static dapr.Constants.SCHEDULE_TOPIC;
+
 @Service
 public class ScheduleService {
 
     private static final Logger log = LoggerFactory.getLogger(ScheduleService.class);
-    private static final String TOPIC_SCHEDULE = "schedule";
-    private static final String PUBSUB = "pubsub";
-
     private final DaprClient daprClient;
 
     @Autowired
@@ -35,8 +35,8 @@ public class ScheduleService {
                 data.getLensType()
         );
 
-        log.info("Publishing event: {}", TOPIC_SCHEDULE);
+        log.info("Publishing event: {}", SCHEDULE_TOPIC);
         log.info("Publishing scheduleTelescope: {}", scheduleTelescope);
-        daprClient.publishEvent(PUBSUB, TOPIC_SCHEDULE, scheduleTelescope).block();
+        daprClient.publishEvent(PUBSUB, SCHEDULE_TOPIC, scheduleTelescope).block();
     }
 }
