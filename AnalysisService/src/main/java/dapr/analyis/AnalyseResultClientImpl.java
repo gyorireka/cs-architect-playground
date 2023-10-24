@@ -1,9 +1,13 @@
 package dapr.analyis;
 
 import dapr.model.AnalysisResult;
+import dapr.model.ImageAddress;
 import io.dapr.client.DaprClient;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 import static dapr.Constants.*;
@@ -17,10 +21,14 @@ public class AnalyseResultClientImpl implements AnalyseResultClient {
 	}
 	
 	@Override
-	public void analyseResultSend() {
+	public void analyseResultSend(ArrayList<ImageAddress> images) {
+		List<AnalysisResult> result = new ArrayList<>();
+		Random random = new Random();
 
-		AnalysisResult analysisResult = new AnalysisResult(UUID.randomUUID(), 3);
-		daprClient.publishEvent(PUBSUB, ANALYSIS_RESULT_TOPIC, analysisResult).block();
+		for (ImageAddress image : images) {
+			result.add(new AnalysisResult(UUID.randomUUID(), image.address(), random.nextInt(20), random.nextInt(10)));
+		}
+		daprClient.publishEvent(PUBSUB, ANALYSIS_RESULT_TOPIC, result).block();
 	}
 
 }

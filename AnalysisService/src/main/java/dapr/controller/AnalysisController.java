@@ -1,6 +1,7 @@
 package dapr.controller;
 
 import dapr.model.AnalysisRequest;
+import dapr.model.ImageAddress;
 import dapr.service.AnalysisService;
 import io.dapr.Topic;
 import io.dapr.client.domain.CloudEvent;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.ArrayList;
 
 import static dapr.Constants.*;
 
@@ -28,7 +31,7 @@ public class AnalysisController {
 
     @GetMapping(path = "/testResult")
     public ResponseEntity<Void> analyseResult() {
-        sendingAnalyseResult();
+        sendingAnalyseResult(new ArrayList<>());
         return ResponseEntity.accepted().build();
     }
 
@@ -39,9 +42,9 @@ public class AnalysisController {
         analysisService.askForImageAddresses(event.getData());
         return ResponseEntity.ok().build();
     }
-    private void sendingAnalyseResult() {
+    private void sendingAnalyseResult(ArrayList<ImageAddress> addresses) {
         log.info("Sending analysis result");
 
-        analysisService.analyseResultSend();
+        analysisService.analyseResultSend(addresses);
     }
 }

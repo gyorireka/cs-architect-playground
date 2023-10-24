@@ -50,7 +50,7 @@ public class ImageListController {
   public ResponseEntity<Void> getImageAddresses(@RequestBody final CloudEvent<List<ImageAddress>> event) {
     log.info("Got image addresses: {}", event.getData());
     // TODO: Download images --- Needed?
-    analysisService.analyseResultSend();
+    analysisService.analyseResultSend((ArrayList<ImageAddress>) event.getData());
     return ResponseEntity.ok().build();
   }
 }

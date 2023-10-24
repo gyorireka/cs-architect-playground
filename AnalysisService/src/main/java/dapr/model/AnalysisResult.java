@@ -4,6 +4,8 @@ import java.util.UUID;
 
 public record AnalysisResult(
         UUID uid,
-        int numberOfStarsFound
+        String imageAddress,
+        int numberOfStars,
+        int numberOfBlackHoles
 ) {
 }

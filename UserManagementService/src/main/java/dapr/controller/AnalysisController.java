@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import io.dapr.Topic;
 import io.dapr.client.domain.CloudEvent;
 
+import java.util.List;
+
 import static dapr.Constants.*;
 
 @RestController
@@ -35,7 +37,7 @@ public class AnalysisController {
 
     @PostMapping(path = "/collectAnalysis")
     @Topic(name = ANALYSIS_RESULT_TOPIC, pubsubName = PUBSUB)
-    public ResponseEntity<Void> collectAnalysis(@RequestBody final CloudEvent<AnalysisResult> event) {
+    public ResponseEntity<Void> collectAnalysis(@RequestBody final CloudEvent<List<AnalysisResult>> event) {
     	log.info("Got analysis result: {}", event.getData());
       return ResponseEntity.ok().build();
     }

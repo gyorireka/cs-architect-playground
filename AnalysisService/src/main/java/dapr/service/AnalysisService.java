@@ -2,11 +2,14 @@ package dapr.service;
 
 import dapr.analyis.AnalyseResultClient;
 import dapr.model.AnalysisRequest;
+import dapr.model.ImageAddress;
 import io.dapr.client.DaprClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 
 import static dapr.Constants.*;
 
@@ -24,8 +27,8 @@ public class AnalysisService {
     this.daprClient = daprClient;
   }
 
-  public void analyseResultSend() {
-    analyseResultClient.analyseResultSend();
+  public void analyseResultSend(ArrayList<ImageAddress> addresses) {
+    analyseResultClient.analyseResultSend(addresses);
   }
 
   public void askForImageAddresses(AnalysisRequest analysisRequest) {
