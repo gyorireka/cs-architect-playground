@@ -11,4 +11,5 @@ spec:
 scopes:
   - usermanagementservice
   - analysisservice
+  - telescopeservice
   # Tobbi service-eket ide tedd be
