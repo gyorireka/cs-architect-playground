@@ -5,14 +5,14 @@ using TelescopeService.Models;
 namespace TelescopeService.Generator
 {
     //This whole class is ugly and meant for testing purposes only
-    public class Generator
+    public static class Generator
     {
         public const string InputTextTemplate = "s";
         public const string StableDiffusionHost = "http://localhost:7860/file=";
 
         public async static Task<GeneratedImage> Generate(string color)
         {
-            string response = await Generator.GenerateImage("green");
+            string response = await Generator.GenerateImage(color);
             string downloadUrlFromGenerator = Generator.GetDownloadURL(response);
 
             var lastIndexOfSlash = downloadUrlFromGenerator.LastIndexOf("/");

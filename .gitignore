@@ -14,3 +14,4 @@ vendor
 **/*.jar
 **/set-vars.sh
 **/set-vars.ps1
+**/.vs

@@ -9,6 +9,7 @@ namespace TelescopeService.Service
         const string create = "create";
 
         private readonly DaprClient _daprClient;
+
         public ImageHandlerService(DaprClient daprClient) {
 
             _daprClient = daprClient;

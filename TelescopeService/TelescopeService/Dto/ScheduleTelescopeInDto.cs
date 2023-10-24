@@ -8,7 +8,7 @@
 
         public required string StartDateTime { get; set; }
 
-        public required string EndDateTime { get; set; }
+        public required int EndDateTime { get; set; }
 
         public required string LensType { get; set; }
     }

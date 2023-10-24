@@ -15,4 +15,4 @@ Start by:
 # Telescope service
 Start by:
 
-`dapr run --app-id telescopeservice --app-port 6002 --dapr-http-port 3602 --dapr-grpc-port 60002 --resources-path ../dapr/components dotnet run`
+`dapr run --app-id telescopeservice --app-port 6002 --dapr-http-port 3602 --dapr-grpc-port 60002 --resources-path ../../dapr/components dotnet run`

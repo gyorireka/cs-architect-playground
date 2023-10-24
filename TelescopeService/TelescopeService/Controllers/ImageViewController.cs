@@ -1,7 +1,7 @@
 ﻿using Dapr.Client;
 using Microsoft.AspNetCore.Mvc;
 
-namespace FineCollectionService.Controllers;
+namespace TelescopeService.Controllers;
 
 [ApiController]
 [Route("")]

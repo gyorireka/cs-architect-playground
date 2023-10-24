@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj": {}
+    "c:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj": {}
   },
   "projects": {
-    "C:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj": {
+    "c:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj",
+        "projectUniqueName": "c:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj",
         "projectName": "TelescopeService",
-        "projectPath": "C:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj",
+        "projectPath": "c:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\TelescopeService.csproj",
         "packagesPath": "C:\\Users\\Csupakabra\\.nuget\\packages\\",
-        "outputPath": "C:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\obj\\",
+        "outputPath": "c:\\Dolgaim\\Work\\source\\cs-architect-playground\\TelescopeService\\TelescopeService\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Csupakabra\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -47,6 +47,10 @@
             "Dapr.Client": {
               "target": "Package",
               "version": "[1.12.0, )"
+            },
+            "Dapr.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[1.11.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

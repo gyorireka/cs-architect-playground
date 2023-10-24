@@ -7,7 +7,7 @@ spec:
   version: v1
   metadata:
     - name: connectionString # Required when not using Azure Authentication.
-      value: "<IDE TEDD BE AZ AZURE SERVICE NAMESPACE-NEK A CONNECTION STRING-JET"
+      value: "Endpoint=sb://gyrsb2.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=fBj4vAAhqXcLd1qkUBh5SEo4ycjSXmARY+ASbJ4UUms="
 scopes:
   - usermanagementservice
   - analysisservice
