@@ -10,12 +10,13 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.UUID;
 
+import static dapr.Constants.DEVICE_INFO_TOPIC;
+import static dapr.Constants.PUBSUB;
+
 @Service
 public class DeviceInfoService {
 
   private static final Logger log = LoggerFactory.getLogger(DeviceInfoService.class);
-  private static final String TOPIC_DEVICEINFO = "deviceInfo";
-  private static final String PUBSUB = "pubsub";
 
   private final DaprClient daprClient;
 
@@ -30,9 +31,9 @@ public class DeviceInfoService {
             "testUser",
             new Date().toString()
     );
-    log.info("Publishing event: {}", TOPIC_DEVICEINFO);
+    log.info("Publishing event: {}", DEVICE_INFO_TOPIC);
     log.info("Publishing deviceInfoRequest: {}", deviceInfoRequest);
 
-    daprClient.publishEvent(PUBSUB, TOPIC_DEVICEINFO, deviceInfoRequest).block();
+    daprClient.publishEvent(PUBSUB, DEVICE_INFO_TOPIC, deviceInfoRequest).block();
   }
 }

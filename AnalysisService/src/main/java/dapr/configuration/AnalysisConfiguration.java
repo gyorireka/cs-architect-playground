@@ -1,4 +1,4 @@
-package dapr;
+package dapr.configuration;
 
 import dapr.analyis.AnalyseResultClient;
 import org.springframework.context.annotation.Bean;
@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import dapr.analyis.DaprAnalyseResultClient;
+import dapr.analyis.AnalyseResultClientImpl;
 import io.dapr.client.DaprClient;
 import io.dapr.client.DaprClientBuilder;
 import io.dapr.serializer.DefaultObjectSerializer;
@@ -24,10 +24,10 @@ public class AnalysisConfiguration {
 	}
 
     @Bean
-    public AnalyseResultClient fineCollectionClient(final DaprClient daprClient) {
-        return new DaprAnalyseResultClient(daprClient);
+    public AnalyseResultClient daprAnalyseResultClient(final DaprClient daprClient) {
+        return new AnalyseResultClientImpl(daprClient);
     }
-    
+
     @Bean
     public DaprClient daprClient() {
         return new DaprClientBuilder()
