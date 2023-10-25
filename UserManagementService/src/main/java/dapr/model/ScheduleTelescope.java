@@ -5,8 +5,8 @@ import java.util.UUID;
 public record ScheduleTelescope(
         UUID id,
         String requestedByUser,
-        String startDate,
-        String endDate,
+        String startDateTime,
+        int endDateTime,
         String lensType
 ) {
 }

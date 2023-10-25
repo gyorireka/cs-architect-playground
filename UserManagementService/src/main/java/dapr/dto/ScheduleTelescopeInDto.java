@@ -24,7 +24,7 @@ public class ScheduleTelescopeInDto {
     private String startDateTime;
 
     @NotNull
-    private String endDateTime;
+    private int endDateTime;
 
     @NotNull
     private String lensType;
