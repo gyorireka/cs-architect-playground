@@ -24,24 +24,26 @@ public class ImageInfoStoreController : ControllerBase
     [Topic("pubsub", "schedule", "deadletters", false)]
     [Route("storeImageInfo")]
     [HttpPost()]
-    public async Task<ActionResult> StoreImageInfo(ScheduleTelescopeInDto telescopeSchedule, [FromServices] DaprClient daprClient)
+    public async Task<ActionResult> StoreImageInfo(CloudEvent<ScheduleTelescopeInDto> telescopeScheduleEvent, [FromServices] DaprClient daprClient)
     {
-        _logger.LogInformation($"Got schedule request: user {telescopeSchedule.RequestedByUser}");
+        ScheduleTelescopeInDto telescopeSchedule = telescopeScheduleEvent.Data;
+
+        _logger.LogInformation($"Got schedule request: user {telescopeSchedule.requestedByUser}");
 
         ImageHandlerService imageHandlerService = new ImageHandlerService(daprClient);
 
         try {
-            for (int i = 0; i < telescopeSchedule.EndDateTime; i++)
+            for (int i = 0; i < telescopeSchedule.endDateTime; i++)
             {
-                var image = await Generator.Generator.Generate(telescopeSchedule.LensType);
+                var image = await Generator.Generator.Generate(telescopeSchedule.lensType);
 
                 var blobURL = await imageHandlerService.SaveImageToBlob(image.ImageName, image.ImageData);
 
                 _logger.LogInformation($"Image created and uploaded to blob store. Blob download URL: {blobURL}");
 
-                ImageCreated imageCreated = new ImageCreated(telescopeSchedule.RequestedByUser, blobURL, DateTime.Now);
+                ImageCreated imageCreated = new ImageCreated(telescopeSchedule.requestedByUser, blobURL, DateTime.Now);
 
-                await daprClient.SaveStateAsync<ImageCreated>(EventStoreName, telescopeSchedule.RequestedByUser, imageCreated);
+                await daprClient.SaveStateAsync<ImageCreated>(EventStoreName, telescopeSchedule.requestedByUser, imageCreated);
             }
         } catch (Exception ex)
         {

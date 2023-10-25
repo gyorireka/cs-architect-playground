@@ -2,14 +2,14 @@
 {
     public class ScheduleTelescopeInDto
     {
-        public string? Id { get; set; }
+        public string? id { get; set; }
 
-        public required string RequestedByUser { get; set; }
+        public required string requestedByUser { get; set; }
 
-        public required string StartDateTime { get; set; }
+        public required string startDateTime { get; set; }
 
-        public required int EndDateTime { get; set; }
+        public required int endDateTime { get; set; }
 
-        public required string LensType { get; set; }
+        public required string lensType { get; set; }
     }
 }
