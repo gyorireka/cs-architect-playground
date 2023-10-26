@@ -34,12 +34,13 @@ public class ImageListController {
 
   @GetMapping(path = "/collectImageAddresses")
   public void triggerImageAddressSentBack() {
-    List<ImageAddress> addresses = new ArrayList<>();
+    /*List<ImageAddress> addresses = new ArrayList<>();
     addresses.add(new ImageAddress("1", "11"));
     addresses.add(new ImageAddress("2", "22"));
     addresses.add(new ImageAddress("3", "33"));
     addresses.add(new ImageAddress("4", "44"));
-    log.info("Image addresses sent back:");
+    log.info("Image addresses sent back:");*/
+    List<String> addresses = new ArrayList<>();
 
     daprClient.publishEvent(PUBSUB, IMAGE_LIST_RESULT_TOPIC, addresses).block();
   }
@@ -47,10 +48,10 @@ public class ImageListController {
 
   @PostMapping(path = "/collectImageAddresses")
   @Topic(name = IMAGE_LIST_RESULT_TOPIC, pubsubName = PUBSUB)
-  public ResponseEntity<Void> getImageAddresses(@RequestBody final CloudEvent<List<ImageAddress>> event) {
+  public ResponseEntity<Void> getImageAddresses(@RequestBody final CloudEvent<List<String>> event) {
     log.info("Got image addresses: {}", event.getData());
     // TODO: Download images --- Needed?
-    analysisService.analyseResultSend((ArrayList<ImageAddress>) event.getData());
+    analysisService.analyseResultSend((ArrayList<String>) event.getData());
     return ResponseEntity.ok().build();
   }
 }

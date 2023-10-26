@@ -27,7 +27,7 @@ public class AnalysisService {
     this.daprClient = daprClient;
   }
 
-  public void analyseResultSend(ArrayList<ImageAddress> addresses) {
+  public void analyseResultSend(ArrayList<String> addresses) {
     analyseResultClient.analyseResultSend(addresses);
   }
 

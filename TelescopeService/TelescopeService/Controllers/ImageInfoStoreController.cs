@@ -22,7 +22,7 @@ public class ImageInfoStoreController : ControllerBase
     }
 
     [Topic("pubsub", "schedule", "deadletters", false)]
-    [Route("storeImageInfo")]
+    [Route("/storeImageInfo")]
     [HttpPost()]
     public async Task<ActionResult> StoreImageInfo(CloudEvent<ScheduleTelescopeInDto> telescopeScheduleEvent, [FromServices] DaprClient daprClient)
     {
@@ -42,12 +42,14 @@ public class ImageInfoStoreController : ControllerBase
                 _logger.LogInformation($"Image created and uploaded to blob store. Blob download URL: {blobURL}");
 
                 ImageCreated imageCreated = new ImageCreated(telescopeSchedule.requestedByUser, blobURL, DateTime.Now);
+                Guid guid = Guid.NewGuid();
 
-                await daprClient.SaveStateAsync<ImageCreated>(EventStoreName, telescopeSchedule.requestedByUser, imageCreated);
+                await daprClient.SaveStateAsync<ImageCreated>(EventStoreName, guid.ToString(), imageCreated);
             }
         } catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            //return BadRequest(ex.Message);
+            throw;
         }
         
         return Ok();

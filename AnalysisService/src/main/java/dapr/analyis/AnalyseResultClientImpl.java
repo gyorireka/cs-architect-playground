@@ -21,12 +21,12 @@ public class AnalyseResultClientImpl implements AnalyseResultClient {
 	}
 	
 	@Override
-	public void analyseResultSend(ArrayList<ImageAddress> images) {
+	public void analyseResultSend(ArrayList<String> images) {
 		List<AnalysisResult> result = new ArrayList<>();
 		Random random = new Random();
 
-		for (ImageAddress image : images) {
-			result.add(new AnalysisResult(UUID.randomUUID(), image.address(), random.nextInt(20), random.nextInt(10)));
+		for (String image : images) {
+			result.add(new AnalysisResult(UUID.randomUUID(), image, random.nextInt(20), random.nextInt(10)));
 		}
 		daprClient.publishEvent(PUBSUB, ANALYSIS_RESULT_TOPIC, result).block();
 	}

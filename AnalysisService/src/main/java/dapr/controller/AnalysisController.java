@@ -42,7 +42,7 @@ public class AnalysisController {
         analysisService.askForImageAddresses(event.getData());
         return ResponseEntity.ok().build();
     }
-    private void sendingAnalyseResult(ArrayList<ImageAddress> addresses) {
+    private void sendingAnalyseResult(ArrayList<String> addresses) {
         log.info("Sending analysis result");
 
         analysisService.analyseResultSend(addresses);

@@ -3,12 +3,15 @@ kind: Component
 metadata:
   name: statestore
 spec:
-  type: state.azure.tablestorage
+  type: state.azure.cosmosdb
   version: v1
+  initTimeout: 5m
   metadata:
-  - name: accountName
-    value: gyrstor
-  - name: accountKey
-    value: HvgA4repdGbYzq1jzx/wVPY79naz1QoxzRDiIN14qCzHr22RFwUTIZ1JjykoFYMu8RzlZtYlpSXR+AStp2Tdiw==
-  - name: tableName
-    value: generatedimage
+  - name: url
+    value: https://gyrcosmos.documents.azure.com:443/
+  - name: masterKey
+    value: FkZVJPbpVGlTPtAJ9rp9SgQOp16Wjfq7jgdd4z9TEhvwdzqgPirBKxxVAc7xOE0HFcOwDpZOrEVeACDbksHk4Q==
+  - name: database
+    value: poc
+  - name: collection
+    value: images
